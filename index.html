@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #myForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #formDataDisplay {
+            display: none;
+            padding: 15px;
+            margin-top: 20px; /* Add margin to separate from the form */
+            text-align: center; /* Center the text */
+            border: 1px solid #000;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm">
+        <!-- Two text fields - Name and Email -->
+        <input id="name" type="text" placeholder="Name" value=""><br><br>
+        <input id="email" type="email" placeholder="Email" value=""><br><br>
+
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <label>
+            <input type="radio" name="gender" value="male"> Male
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="gender" value="female"> Female
+        </label><br><br>
+
+        <!-- Submit button -->
+        <input type="button" value="Submit" onclick="displayFormData()">
+    </form>
+
+    <!-- Display form data -->
+    <div id="formDataDisplay"></div>
+
+    <script>
+        // JavaScript to get and display form data
+        function displayFormData() {
+            // Get form data
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var gender = $('input[name="gender"]:checked');
+
+            // Capitalize gender value
+            var capitalizedGender = gender ? gender.val().charAt(0).toUpperCase() + gender.val().slice(1) : "Not specified";
+
+            // Display form data
+            var displayDiv = $("#formDataDisplay");
+            displayDiv.html("Name: " + name + "<br>Email: " + email + "<br>Gender: " + capitalizedGender);
+
+            // Fade in the form data
+            displayDiv.fadeIn();
+
+            // Slide up the form data on mouseover
+            displayDiv.mouseover(function () {
+                displayDiv.slideUp();
+            });
+        }
+    </script>
+</body>
+
+</html>
